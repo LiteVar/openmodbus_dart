@@ -7,7 +7,7 @@ enum ServerType {
   rtu, ascii  // via SerialConfig
 }
 
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class Server {
   late ServerType type;
   late dynamic config;
@@ -44,49 +44,14 @@ class NetConfig {
   Map<String, dynamic> toJson() => _$NetConfigToJson(this);
 }
 
-enum BaudRateType {
-  b200,
-  b300,
-  b600,
-  b1200,
-  b1800,
-  b2400,
-  b4800,
-  b9600,
-  b19200,
-  b28800,
-  b38400,
-  b57600,
-  b76800,
-  b115200,
-  b230400,
-  b460800,
-  b576000,
-  b921600
-}
-
 @JsonSerializable()
 class SerialConfig {
   late String port;
+  late int baudRate;
 
-  @JsonKey(fromJson: _baudRateTypeFromJson, toJson: _baudRateTypeToJson)
-  late BaudRateType baudRate;
-
-  SerialConfig({required this.port, this.baudRate = BaudRateType.b9600});
+  SerialConfig({required this.port, this.baudRate = 9600});
 
   factory SerialConfig.fromJson(Map<String, dynamic> json) => _$SerialConfigFromJson(json);
 
   Map<String, dynamic> toJson() => _$SerialConfigToJson(this);
-
-}
-
-BaudRateType _baudRateTypeFromJson(int number) {
-  return BaudRateType.values.firstWhere(
-          (e) => e.toString() == 'BaudRateType.b$number',
-      orElse: () => throw ArgumentError('Unrecognized enum value: $number')
-  );
-}
-
-int _baudRateTypeToJson(BaudRateType enumValue) {
-  return int.parse(enumValue.toString().split('b')[1]);
 }
