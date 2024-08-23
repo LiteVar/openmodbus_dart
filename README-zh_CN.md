@@ -1,20 +1,20 @@
 # openmodbus_dart
 
-English · [中文](README-zh_CN.md)
+[English](README.md) · 中文
 
-An OpenModbus JSON Spec Parser for dart.
+一个用于 Dart 的 OpenModbus JSON 规范解析器
 
-Inspired by OpenAPI, OpenRPC, and OpenAI `function calling` example.
+灵感来源于OpenAPI、OpenRPC和OpenAI的 `function calling`示例。
 
-## Features
+## 功能
 
-- Load OpenModbus json file, and convert to dart object. See [OpenModbus Specification](openmodbus-specification-en.md).
+- 加载 OpenTool JSON 文件，并转换为 Dart 对象。 见 [OpenModbus规范](openmodbus-specification-cn.md).
 
-## Usage
+## 用法
 
-According to `/example/openmodbus_dart_example.dart`.
+根据 `/example/openmodbus_dart_example.dart` 示例进行操作。
 
-- From JSON String
+- 从 JSON 字符串加载
 ```dart
 Future<void> main() async {
   String jsonString = "{...OpenModbus String...}";
@@ -22,7 +22,7 @@ Future<void> main() async {
   OpenModbus openModbus = await openModbusLoader.load(jsonString);
 }
 ```
-- From JSON File
+- 从 JSON 文件加载
 ```dart
 Future<void> main() async {
   String jsonPath = "$currentWorkingDirectory/example/json/$jsonFileName";
