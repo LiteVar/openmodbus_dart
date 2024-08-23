@@ -1,14 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'function_model.dart';
-
 part 'parameter.g.dart';
 
 @JsonSerializable()
 class Parameter {
-  late String name;
+  String name;
   String? description;
-  late DataType type;
+  String type;
   double multiplier;
   String? uom;
 

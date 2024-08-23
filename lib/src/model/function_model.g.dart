@@ -10,40 +10,22 @@ FunctionModel _$FunctionModelFromJson(Map<String, dynamic> json) =>
     FunctionModel(
       name: json['name'] as String,
       description: json['description'] as String?,
-      slaveId: (json['slaveId'] as num).toInt(),
-      method: $enumDecode(_$MethodTypeEnumMap, json['method']),
-      storage: $enumDecode(_$StorageTypeEnumMap, json['storage']),
-      address: (json['address'] as num).toInt(),
-      count: (json['count'] as num).toInt(),
+      method: json['method'] as String,
+      path: Path.fromJson(json['path'] as Map<String, dynamic>),
       parameter: json['parameter'] == null
           ? null
           : Parameter.fromJson(json['parameter'] as Map<String, dynamic>),
-      result: json['result'] == null
+      return_: json['return'] == null
           ? null
-          : Result.fromJson(json['result'] as Map<String, dynamic>),
+          : Return.fromJson(json['return'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$FunctionModelToJson(FunctionModel instance) =>
     <String, dynamic>{
       'name': instance.name,
       'description': instance.description,
-      'slaveId': instance.slaveId,
-      'method': _$MethodTypeEnumMap[instance.method]!,
-      'storage': _$StorageTypeEnumMap[instance.storage]!,
-      'address': instance.address,
-      'count': instance.count,
+      'method': instance.method,
+      'path': instance.path,
       'parameter': instance.parameter,
-      'result': instance.result,
+      'return': instance.return_,
     };
-
-const _$MethodTypeEnumMap = {
-  MethodType.read: 'read',
-  MethodType.write: 'write',
-};
-
-const _$StorageTypeEnumMap = {
-  StorageType.coils: 'coils',
-  StorageType.discreteInput: 'discreteInput',
-  StorageType.inputRegisters: 'inputRegisters',
-  StorageType.holdingRegisters: 'holdingRegisters',
-};
